@@ -1,0 +1,82 @@
+org: arusyn
+app: myejconcern
+service: ej-bot
+frameworkVersion: '3'
+provider:
+  name: aws
+  runtime: python3.9
+  environment:
+    twilio_account_sid: ${param:twilio_account_sid}
+    twilio_number: ${param:twilio_number}
+    twilio_auth_token: ${param:twilio_auth_token}
+    openaiapikey: ${param:openaiapikey}
+  timeout: 30
+  iam:
+      role:
+          statements:
+            - Effect: Allow
+              Action:
+                - dynamodb:Scan
+                - dynamodb:Query
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+                - dynamodb:GetItem
+                - dynamodb:DescribeTable
+                - dynamodb:DeleteItem
+              Resource: 
+                - "arn:aws:dynamodb:*:*:table/ejchats"  
+                - "arn:aws:dynamodb:*:*:table/ejusers"  
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: chat
+          method: post
+resources:
+  Resources:
+    users:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ejusers
+        AttributeDefinitions:
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: username
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    chats:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ejchats
+        AttributeDefinitions:
+          - AttributeName: username
+            AttributeType: S
+          - AttributeName: started_at
+            AttributeType: S
+        KeySchema:
+          - AttributeName: username
+            KeyType: HASH
+          - AttributeName: started_at
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+plugins:
+  - serverless-python-requirements
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+    noDeploy:
+      - setuptools
+      - boto3
+      - botocore
+      - s3transfer
+package:
+  exclude:
+    - node_modules/**
+    - venv/**
+    - secret/**

@@ -1,0 +1,9 @@
+{
+  "name": "ej-bot",
+  "scripts": {
+    "postinstall": "pip3 install -r requirements.txt"
+    },
+  "devDependencies": {
+    "serverless-python-requirements": "^6.0.0"
+  }
+}
