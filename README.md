@@ -16,7 +16,7 @@ This is a simple chat application that give people an easier way to report envir
 ## Setup
 1. Clone repo to your machine: `git clone origin https://github.com/andriyrusyn/myejbot`
 2. Make sure you have python 3.9 installed: `brew install python@3.9`
-3. Set up a virtual environment running python 3.: 
+3. Set up a virtual environment running python 3.9: 
 `pip3 install virtualenv` and then `virtualenv venv -p python3.9`
 4. Activate the virtual environment: `source venv/bin/activate`
 5. Install the requirements: `pip install -r requirements.txt`

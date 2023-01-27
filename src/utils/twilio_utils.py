@@ -2,7 +2,6 @@ from twilio.rest import Client
 import src.utils.utils as utils
 import urllib.parse
 import os
-# import vobject
 
 twilio_account_sid = (utils.open_file('secret/keys/twilio_account_sid.txt') or os.environ['twilio_account_sid'] )
 twilio_auth_token = (utils.open_file('secret/keys/twilio_auth_token.txt') or os.environ['twilio_auth_token'])

@@ -11,7 +11,7 @@ usersTable = client.Table("ejusers")
 
 # DynamoDB helpers
 def put_user_object(user):
-    usersTable.put_item(Item= {'username': user.username, 'habits':  user.habits, 'nudge_hour': user.nudge_hour, 'first_name': user.first_name, 'nudge_message': user.nudge_message, 'bot_name': user.bot_name, 'time_zone': user.time_zone, 'about':user.about, 'gmt_offset':user.gmt_offset, 'location':user.location, 'created_at':user.created_at, 'last_updated_at':dt.now().strftime("%Y-%m-%d %H:%M:%S"), 'chat_id': user.chat_id, 'last_weekly_review_at': user.last_weekly_review_at, 'pause_nudge_until': user.pause_nudge_until, 'weekly_review_day': user.weekly_review_day}) 
+    usersTable.put_item(Item= {'username': user.username, 'first_name': user.first_name, 'location':user.location, 'created_at':user.created_at, 'last_updated_at':dt.now().strftime("%Y-%m-%d %H:%M:%S")}) 
 
 def put_conversation_object(conversation):
     if(conversation.chat_status == "BRANDNEW"):
@@ -19,14 +19,14 @@ def put_conversation_object(conversation):
     elif(conversation.chat_status == "ONGOING"):
         chatsTable.update_item(
                 Key= {'username': conversation.username, 'started_at': conversation.started_at},
-                UpdateExpression="set conversation_text=:conversation_text, rating=:rating, habit_log=:habit_log, habit_log_saved_at=:habit_log_saved_at",
-                ExpressionAttributeValues={':conversation_text': conversation.chat, ':rating': conversation.rating, ':habit_log': conversation.habit_log, ':habit_log_saved_at':conversation.habit_log_saved_at},
+                UpdateExpression="set conversation_text=:conversation_text",
+                ExpressionAttributeValues={':conversation_text': conversation.chat},
                 ReturnValues="UPDATED_NEW"
             )
     elif(conversation.chat_status == "NEWFORUSER"):
-        chatsTable.put_item(Item= {'username': conversation.username, 'conversation_text':  conversation.chat, 'started_at': conversation.started_at, 'habit_log': conversation.habit_log, 'habit_log_saved_at':conversation.habit_log_saved_at})
+        chatsTable.put_item(Item= {'username': conversation.username, 'conversation_text':  conversation.chat, 'started_at': conversation.started_at})
     elif(conversation.chat_status == "COMPLETED"):
-        chatsTable.put_item(Item= {'username': conversation.username, 'conversation_text':  conversation.chat, 'started_at': conversation.started_at, 'completed_at': conversation.completed_at, 'rating': conversation.rating, 'habit_log': conversation.habit_log, 'habit_log_saved_at':conversation.habit_log_saved_at})        
+        chatsTable.put_item(Item= {'username': conversation.username, 'conversation_text':  conversation.chat, 'started_at': conversation.started_at, 'completed_at': conversation.completed_at})        
     else:
         print("unknown chat status, FATAL ERROR!")
 

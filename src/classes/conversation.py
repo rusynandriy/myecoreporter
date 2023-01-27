@@ -3,15 +3,12 @@ from datetime import datetime as dt, timedelta
 import pytz
 
 class Conversation:
-    def __init__(self, username, chat, chat_status, started_at, completed_at, rating, habit_log_saved_at, habit_log):
+    def __init__(self, username, chat, chat_status, started_at, completed_at):
         self.username = username
         self.chat = chat
         self.chat_status = chat_status # BRANDNEW/NEWFORUSER/ONGOING/COMPLETED
         self.started_at = started_at
         self.completed_at = completed_at
-        self.rating = rating
-        self.habit_log_saved_at = habit_log_saved_at
-        self.habit_log = habit_log
 
     def __init__(self):
         self.username = ""
@@ -19,22 +16,12 @@ class Conversation:
         self.chat_status = ""
         self.started_at = ""
         self.completed_at = ""
-        self.rating = ""
-        self.habit_log_saved_at = ""
-        self.habit_log = ""
 
     @classmethod
     def from_username(cls, username):
         dynamo_db_item = dynamo.get_conversation(str(username))
         convo = Conversation()
         convo.username = username
-        
-        try:
-            # try to get the rating
-            convo.rating = dynamo_db_item["Items"][0]["rating"]
-        except:
-            convo.rating = ""
-            # print("couldn't get a rating for this conversation")
 
         try:
             convo.chat = list(dynamo_db_item["Items"][0]["conversation_text"])
@@ -44,8 +31,6 @@ class Conversation:
                     convo.completed_at = dynamo_db_item["Items"][0]["completed_at"]
                     convo.chat = list()
                     convo.chat_status = "NEWFORUSER"
-                    convo.habit_log_saved_at = ""
-                    convo.habit_log = ""
                     convo.started_at = str(dt.now(pytz.timezone("UTC")))
                 except:
                     # if there's no completed_at key, it's an ongoing convo and we need the started_at time for later since it's our Sort Key
@@ -54,12 +39,7 @@ class Conversation:
                     except:
                         print("Fatal error, how is there no started_at for an existing convo??!?!") 
                     convo.chat_status = "ONGOING"
-                    try:
-                        convo.habit_log_saved_at = dynamo_db_item["Items"][0]["habit_log_saved_at"]
-                        convo.habit_log = dynamo_db_item["Items"][0]["habit_log"]
-                    except:
-                        convo.habit_log_saved_at = ""
-                        convo.habit_log = ""
+
         except:
             # first time user's first ever convo
             convo.conversation = list()
