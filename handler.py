@@ -61,7 +61,7 @@ def process_incoming_message(username, message):
     return response
 
 
-def hello(event, context):
+def hello(event, context, testing=False):
     print("raw event is: ", event)
 
     # get the data we need from the event
