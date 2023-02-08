@@ -42,7 +42,7 @@ def process_incoming_message(username, message):
         convo.reset()
         dynamo.put_conversation_object(convo)
         twilio.send_sms("Reset completed, message me again to start from scratch", user)
-        return response
+        return None
         
     # add the latest message to the convo
     convo.add_message(message, username)
