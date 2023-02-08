@@ -54,6 +54,7 @@ def process_incoming_message(username, message):
     # save the convo to the database
     convo.add_message(response, "MyEJConcernBot")
     dynamo.put_conversation_object(convo)
+    dynamo.put_user_object(user)
 
     # send the response to the user
     twilio.send_sms(response, user)
