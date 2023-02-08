@@ -28,7 +28,7 @@ def call_gpt(user, convo):
 
     return response
 
-def process_incoming_message(username, message):
+def process_incoming_message(username, message, testing):
     print(f"processing incoming message {message} from {username}")
 
     # get the user and convo from the database (if they exist, otherwise create them)
@@ -47,12 +47,13 @@ def process_incoming_message(username, message):
     dynamo.put_conversation_object(convo)
 
     # send the response to the user
-    twilio.send_sms(response, user)
+    if not testing:
+        twilio.send_sms(response, user)
 
     return response
 
 
-def hello(event, context):
+def hello(event, context, testing = False):
     print("raw event is: ", event)
 
     # get the data we need from the event
@@ -66,9 +67,9 @@ def hello(event, context):
         print("Message contains json! Looks like we're done!")
         json_object = json.loads(message)
         print("message JSON is: ", json_object)
-    
     # process the data and get a response (prep prompt, call GPT3, save to database, send to user)
-    process_incoming_message(username, message)
+
+    process_incoming_message(username, message, testing)
 
     # return a success object
     return utils.get_success_object(event)
