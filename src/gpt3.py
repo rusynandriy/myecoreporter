@@ -32,7 +32,7 @@ def get_response(prompt, user):
     return get_final_response(prompt)
 
 def add_stop_to_settings(user):
-    bot_name = user.get_bot_name_to_use()
+    bot_name = "MyEJConcern"
     settings["stop"] = [f'{bot_name}:', "("]
     settings["stop"].append(str(user.first_name + ":"))
     settings["stop"].append("\nConversation")

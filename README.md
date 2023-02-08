@@ -13,13 +13,21 @@ authorName: 'Andriy Rusyn'
 
 This is a simple chat application that give people an easier way to report environmental quality concerns to their local government. You just text the bot over SMS and talk to it instead of filling out a form.
 
-## Setup
+## Setup (see windows notes below)
 1. Clone repo to your machine: `git clone origin https://github.com/andriyrusyn/myejbot`
 2. Make sure you have python 3.9 installed: `brew install python@3.9`
-3. Set up a virtual environment running python 3.: 
+3. Set up a virtual environment running python 3.9: 
 `pip3 install virtualenv` and then `virtualenv venv -p python3.9`
 4. Activate the virtual environment: `source venv/bin/activate`
 5. Install the requirements: `pip install -r requirements.txt`
+
+## WINDOWS SETUP NOTES
+- follow this guide instead to set up virtualenv, etc.
+- https://mothergeo-py.readthedocs.io/en/latest/development/how-to/venv-win.html
+
+## set up AWS Cli
+1. install the AWS CLI by following these intstructions
+2. configure it using the keys and the `aws configure` command (ask Andriy for keys)
 
 ## Usage
 0. first activate your virtual environment: `source venv/bin/activate`

@@ -35,6 +35,15 @@ def process_incoming_message(username, message, testing):
     user = User.from_username(username)
     convo = Conversation.from_username(username)
     
+    # dev thing to help with testing. Can also be used by users if they get stuck.
+    if("RESET" == message.strip().upper()): 
+        print("ending convo, they just hit the reset button!")
+        convo.add_message("RESET", user.first_name)
+        convo.reset()
+        dynamo.put_conversation_object(convo)
+        twilio.send_sms("Reset completed, message me again to start from scratch", user)
+        return response
+        
     # add the latest message to the convo
     convo.add_message(message, username)
 
@@ -45,6 +54,7 @@ def process_incoming_message(username, message, testing):
     # save the convo to the database
     convo.add_message(response, "MyEJConcernBot")
     dynamo.put_conversation_object(convo)
+    dynamo.put_user_object(user)
 
     # send the response to the user
     if not testing:
@@ -53,7 +63,7 @@ def process_incoming_message(username, message, testing):
     return response
 
 
-def hello(event, context, testing = False):
+def hello(event, context, testing=False):
     print("raw event is: ", event)
 
     # get the data we need from the event
