@@ -1,6 +1,7 @@
 # import standard python libraries
 import json
 from datetime import datetime as dt
+from time import sleep
 import urllib.parse
 import boto3
 import os
@@ -58,6 +59,8 @@ def process_incoming_message(username, message, testing):
 
     # send the response to the user
     if not testing:
+        #sleep for 5s
+        sleep(5)
         twilio.send_sms(response, user)
 
     return response
@@ -78,6 +81,7 @@ def hello(event, context, testing=False):
         json_object = json.loads(message)
         print("message JSON is: ", json_object)
     # process the data and get a response (prep prompt, call GPT3, save to database, send to user)
+
 
     process_incoming_message(username, message, testing)
 
