@@ -27,3 +27,8 @@ node_modules
 
 # secrets
 secret/
+src/utils/__pycache__/twilio_utils.cpython-39.pyc
+
+__pycache__/
+Ejconcernbots.code-workspace
+AWSCLIV2.pkg
