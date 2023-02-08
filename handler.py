@@ -25,7 +25,7 @@ def call_gpt(user, convo):
 
     # call GPT3
     response = gpt3.get_response(prompt, user)
-    print("response is: ", response)
+    print("MyEcoReporter: ", response)
 
     return response
 
@@ -50,10 +50,9 @@ def process_incoming_message(username, message, testing):
 
     # get the response from GPT3
     response = call_gpt(user, convo)
-    print("response is: ", response)
 
     # save the convo to the database
-    convo.add_message(response, "MyEJConcernBot")
+    convo.add_message(response, "MyEcoReporter")
     dynamo.put_conversation_object(convo)
     dynamo.put_user_object(user)
 
