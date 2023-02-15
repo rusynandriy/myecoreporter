@@ -8,8 +8,12 @@ if __name__ == "__main__":
     conversations = dynamo.get_all_conversations()
 
     # make a new folder for today's chats
+
     today = dt.now().strftime("%Y-%m-%d")
-    os.mkdir(today)
+    try:
+        os.mkdir(today)
+    except:
+        print("folder exist")
 
     # loop through them and save them to that folder
     for conversation in conversations["Items"]:
