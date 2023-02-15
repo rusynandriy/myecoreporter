@@ -1,4 +1,3 @@
-# hi tom
 # import standard python libraries
 import json
 from datetime import datetime as dt
