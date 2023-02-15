@@ -1,2 +1,0 @@
-(17:59) +12187918621&MediaUrl0=https%3A%2F%2Fapi.twilio.com%2F2010-04-01%2FAccounts%2FACc3502ad649fba858d439669d44c93b30%2FMessages%2FMM934ee0f2320c14010b3d64e1f29701d0%2FMedia%2FME4b5e9a56bba042a4aee045dcba37f226: 
-(18:00) MyEJConcernBot: Hi! I'm MyEJConcern. I'm here to help you report environmental problems to your state environmental quality agency. Can you tell me what kind of problem you've noticed?
