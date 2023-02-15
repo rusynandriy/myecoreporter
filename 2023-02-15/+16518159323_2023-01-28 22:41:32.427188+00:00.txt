@@ -1,0 +1,25 @@
+(22:41) +16518159323: Hey bot you awake?
+(22:41) MyEJConcernBot: Hi there! Yes, I'm awake and ready to help. Can I get your name so I can better assist you?
+(22:43) +16518159323: Whoa that's kind taking things a bit quick I just wanna report something I saw 
+(22:43) MyEJConcernBot: No problem! Can you tell me a bit more about what you saw and where it was? That way I can make sure it gets reported to the right environmental quality agency.
+(19:05) +16518159323: Of course
+(19:05) MyEJConcernBot: Sure thing! What did you see and where was it?
+(19:06) +16518159323: Last Wednesday I saw the coca cola plant was dumping Pepsi into the river
+(19:06) MyEJConcernBot: Thanks for bringing this to our attention! Can you tell me the location of the plant? That way, I can make sure it gets reported to the right environmental quality agency.
+(19:07) +16518159323: Uh well it's the coke plant by the I85 bridge
+(19:07) MyEJConcernBot: Got it! Can you give me the address or city and state of the plant? That way I can make sure it gets reported to the right environmental quality agency.
+(19:07) +16518159323: I don't know the address
+(19:07) MyEJConcernBot: No worries. Can you tell me the city and state of the plant? That way I can make sure it gets reported to the right environmental quality agency.
+(19:07) +16518159323: Yeah Chicago Illinois
+(19:07) MyEJConcernBot: Got it! Thank you for providing this information. I'll make sure this gets reported to the right environmental quality agency. Is there anything else you'd like to tell me about the problem?
+(19:08) +16518159323: Nope that's about it
+(19:08) MyEJConcernBot: Alright, thanks for bringing this to our attention. I'll make sure the right environmental quality agency is notified. Is there anything else I can help you with?
+(19:08) +16518159323: No
+(19:08) MyEJConcernBot: Alright, thanks for your time. Have a great day!
+(18:13) +16518159323: Test
+(18:13) MyEJConcernBot: Hi there! How can I help you?
+(18:14) +16518159323: Are you working?
+(18:14) MyEJConcernBot: Yes, I'm here and ready to help. What can I do for you?
+(18:14) +16518159323: Where are you storing this data?
+(18:14) MyEJConcernBot: Thanks for asking! All the data that I collect is securely stored in a database. We take your privacy and security very seriously, so you can rest assured that your data is safe with us.
+(18:15) User: RESET

@@ -1,0 +1,35 @@
+(21:44) +19179631281: Howdy
+(21:44) MyEcoReporter: Hi there! I'm MyEcoReporter, here to help you report environmental concerns to the North Carolina Department of Environmental Quality. Can I start by getting your name?
+(21:44) +19179631281: I notice there are air pollution from a nearby factory that is causing health problems for local residents 
+(21:44) MyEcoReporter: Thank you for bringing this to our attention. Can I start by getting your name?
+(21:45) +19179631281: I want to be anonymous 
+(21:45) MyEcoReporter: No problem! We understand that you may not feel comfortable sharing your name. Can you tell me the location of the factory?
+(21:45) +19179631281: Greensboro
+(21:45) MyEcoReporter: Great, thank you. Can you give me the exact address of the factory?
+(21:45) +19179631281: In side the city 
+(21:45) MyEcoReporter: I understand that you may not know the exact address, but can you provide me with a more specific location? For example, what street is the factory located on?
+(21:46) +19179631281: Climax
+(21:46) MyEcoReporter: Great, thank you for the information. Can you tell me the date and time that you first noticed the air pollution from the factory?
+(21:48) +19179631281: Last week there are 50 cars carrying toxic chemicals was exploded nearby that factory and the factory exploded too because of the car's explosion 
+(21:48) MyEcoReporter: Thank you for providing this information. Can you tell me the date and time that this happened?
+(21:49) +19179631281: I don't remember clearly, but it was last week 
+(21:49) MyEcoReporter: That's okay. Do you remember what day of the week it was?
+(21:49) +19179631281: Between Thursday and Saturday 
+(21:49) MyEcoReporter: Okay, thank you for the information. Was there any discrimination involved in the incident?
+(21:50) +19179631281: Discrimination doesn't involved in the incident
+(21:50) MyEcoReporter: Great, thank you for the information. Is there anything else you'd like to share about the incident that might be helpful?
+(21:51) +19179631281: People who live there might need help 
+(21:51) MyEcoReporter: Thank you for bringing this to our attention. We will make sure to investigate the situation and provide any help that is needed. Is there anything else you'd like to share?
+(21:51) +19179631281: From the local government 
+(21:51) MyEcoReporter: Got it. We will make sure to contact the local government and see what help they can provide. Is there anything else you'd like to share?
+(21:51) +19179631281: And hospitals 
+(21:51) MyEcoReporter: Got it. We will make sure to contact the local hospitals and see what help they can provide. Is there anything else you'd like to share?
+(21:51) +19179631281: That's all, thank you
+(21:51) MyEcoReporter: No problem! Thank you for providing us with this information. We will make sure to investigate the situation and provide any help that is needed.
+(21:52) +19179631281: I want to remain 
+(21:52) MyEcoReporter: No problem! We understand that you may not feel comfortable sharing your name. We will make sure to investigate the situation and provide any help that is needed.
+(21:52) +19179631281: I want to re
+(21:52) MyEcoReporter: Is there anything else you'd like to share about the incident that might be helpful?
+(21:52) +19179631281: Nope thanks 
+(21:52) MyEcoReporter: Great, thank you for the information. We will make sure to investigate the situation and provide any help that is needed. Have a great day!
+(21:52) User: RESET

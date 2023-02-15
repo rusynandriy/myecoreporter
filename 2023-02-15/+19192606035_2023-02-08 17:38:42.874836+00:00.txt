@@ -1,0 +1,18 @@
+(11:38) +19192606035: hey
+(11:38) MyEJConcernBot: Hi there! My name is MyEJConcern. I'm here to help you report environmental concerns in North Carolina. Can you tell me what kind of environmental problem you're experiencing?
+(11:38) +19192606035: yeah
+(11:38) MyEJConcernBot: Great! Could you tell me more about the problem? Where is it located? What type of pollution or environmental issue is it?
+(11:39) +19192606035: some tires were dumpted outside of my apartment last night
+(11:39) MyEJConcernBot: Thanks for the information! Could you provide me with more details? What is the exact location of the dumped tires? Do you know who might have dumped them? Did you experience any discrimination related to this incident? When did it occur?
+(11:39) +19192606035: landlord said it might have been the construction crew he hired to do renovations
+(11:39) MyEJConcernBot: Got it. Could you provide me with the exact location of the dumped tires? Do you know the approximate time when this incident occurred? Did you experience any discrimination related to this incident?
+(11:40) +19192606035: 801 spring loop
+(11:40) MyEJConcernBot: Great, thank you. Can you tell me the approximate time when this incident occurred? Did you experience any discrimination related to this incident?
+(11:40) +19192606035: some time last night, I don't know when exactly
+(11:40) MyEJConcernBot: Got it. Do you know if you experienced any discrimination related to this incident?
+(11:40) +19192606035: I don't think so no
+(11:40) MyEJConcernBot: Got it. Is there anything else you'd like to tell me about the incident?
+(11:40) +19192606035: no thanks
+(11:40) MyEJConcernBot: Alright, thank you for your information. I'll submit your report to the North Carolina DEQ. Is there anything else I can help you with today?
+(11:40) +19192606035: no thanks
+(11:40) MyEJConcernBot: No problem! Have a great day.

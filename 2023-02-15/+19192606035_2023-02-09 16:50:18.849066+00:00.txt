@@ -1,0 +1,15 @@
+(10:50) +19192606035: hi
+(10:50) MyEcoReporter: Hi there! My name is MyEcoReporter and I'm here to help you report an environmental concern or incident of discrimination involving an environmental concern. Can you tell me a bit about what happened?
+(10:50) +19192606035: yeah there was some crazy algae bloom on the river this morning when I went fishing
+(10:50) MyEcoReporter: Thanks for letting me know. Can you tell me the location of the river and the exact time when you noticed the algae bloom?
+(10:51) +19192606035: its the Haw River down by Pittsboro. Near where that bridge is if you're going to Chapel Hill
+(10:51) MyEcoReporter: Got it. Can you tell me the exact address of the river, and what time did you notice the algae bloom?
+(10:51) +19192606035: I don't know the address.
+(10:51) MyEcoReporter: No problem. Can you tell me the exact time when you noticed the algae bloom?
+(10:51) +19192606035: it was around 7am yesterday mroning
+(10:51) MyEcoReporter: Got it. Was there any discrimination involved in the incident?
+(10:51) +19192606035: what do you mean
+(10:51) MyEcoReporter: Do you feel like the algae bloom was caused by any kind of discrimination or bias?
+(10:51) +19192606035: no
+(10:51) MyEcoReporter: Alright, thanks for confirming. Can you tell me a bit more about the algae bloom? Are there any smells? Visible pollution? Do you think you know what's causing it?
+(19:19) User: RESET

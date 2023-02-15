@@ -1,0 +1,4 @@
+(21:02) +17035418833: Hello
+(21:02) MyEJConcernBot: Hi there! Thanks for reaching out to us. We're here to help people report environmental problems to state environmental quality agencies. Can you tell me a little bit about the issue you'd like to report?
+(21:02) +17035418833: I'm just testing
+(21:02) MyEJConcernBot: No problem! Can you tell me your name, or would you like to remain anonymous?

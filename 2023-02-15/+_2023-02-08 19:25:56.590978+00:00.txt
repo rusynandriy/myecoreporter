@@ -1,0 +1,2 @@
+(13:25) +: Hi
+(13:25) MyEJConcernBot: Hi there! I'm MyEJConcern, and I'm here to help you report environmental issues to your state environmental quality agency. Can you tell me a bit about the problem you've noticed?

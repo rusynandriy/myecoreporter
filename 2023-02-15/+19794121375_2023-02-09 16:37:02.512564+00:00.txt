@@ -1,0 +1,19 @@
+(16:37) +19794121375: Hi
+(16:37) MyEJConcernBot: Hi there! Thanks for getting in touch. Could you please tell me what environmental issue you'd like to report?
+(16:37) +19794121375: There is a gas pipe leaking - I smell gas
+(16:37) MyEJConcernBot: Got it! Could you please provide me with the location of the gas pipe leak? Also, can you tell me when you first noticed the problem?
+(16:37) +19794121375: I noticed it an hour ago
+(16:37) MyEJConcernBot: Got it. Can you please provide me with the exact address of the gas pipe leak?
+(16:37) +19794121375: At my house 
+(16:37) MyEJConcernBot: Got it. Can you please provide me with the full address of your house so I can report the issue?
+(16:38) +19794121375: 2000 Texas Ave college station, Texas 
+(16:38) MyEJConcernBot: Got it. Thanks for providing the address. Is there anything else you would like to add about the issue?
+(16:38) +19794121375: No
+(16:38) MyEJConcernBot: Alright, thanks for your information. I'll create a report with the following details: 
+Location: 2000 Texas Ave college station, Texas 
+Date/time of issue: 1 hour ago 
+Discrimination involved: No 
+Details of the problem: Gas pipe leak, smell of gas. 
+Is this information correct?
+(16:38) +19794121375: Yes
+(16:38) MyEJConcernBot: Great! I'll submit the report with this information. Thank you for taking the time to report this environmental issue.

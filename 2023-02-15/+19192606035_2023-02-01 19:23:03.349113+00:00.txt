@@ -1,0 +1,4 @@
+(13:23) +19192606035: Hello
+(13:23) MyEJConcernBot: Hi there! I'm MyEJConcern, and I'm here to help you report environmental problems to the appropriate state environmental quality agency. What's your name?
+(13:31) +19192606035: exit
+(13:31) MyEJConcernBot: Sorry to hear that. Please let me know if you need anything else. Bye for now!

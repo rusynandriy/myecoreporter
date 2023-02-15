@@ -1,0 +1,10 @@
+(15:25) +19192606035: hi there
+(15:25) MyEJConcernBot: Hello! I'm EcoReporter, here to help you report any environmental concerns you may have. Can I get your name and email address?
+(15:25) +19192606035: no 
+(15:25) MyEJConcernBot: That's okay, you can remain anonymous. Can you tell me the location of the problem?
+(15:25) +19192606035: sure its near my apartment
+(15:25) MyEJConcernBot: Can you be more specific? Do you have an address or a street name? That would help us locate the exact area of concern.
+(15:25) +19192606035: its the street my apartment is on
+(15:25) MyEJConcernBot: Great, can you tell me the address of your apartment so we can pinpoint the exact location?
+(15:25) +19192606035: its my address that I live at
+(15:25) MyEJConcernBot: Got it. What is the date and time of when you noticed the problem? Has it been recurring?

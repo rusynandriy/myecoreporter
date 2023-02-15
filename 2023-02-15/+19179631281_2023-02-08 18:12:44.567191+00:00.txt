@@ -1,0 +1,7 @@
+(18:12) +19179631281: Hi
+(18:12) MyEJConcernBot: Hi there! I'm MyEJConcern and I'm here to help you report environmental issues to your state's environmental quality agency. Can you tell me a bit about the issue you'd like to report?
+(18:13) +19179631281: Water pollution 
+(18:13) MyEJConcernBot: Great, thank you for reporting this issue! Can you please provide me with the location of where you noticed the water pollution?
+(18:13) +19179631281: Texas Bryan 
+(18:13) MyEJConcernBot: Thanks for the information. Can you please provide me with the exact address of where you noticed the water pollution, as well as the date and time when you noticed it?
+(18:14) User: RESET

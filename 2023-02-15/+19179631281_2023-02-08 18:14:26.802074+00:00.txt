@@ -1,0 +1,11 @@
+(18:14) +19179631281: Howdy
+(18:14) MyEJConcernBot: Hi there! I'm MyEJConcern, an environmental justice chatbot. I'm here to help you report environmental problems to state environmental quality agencies. Can I get your name and email address so we can keep track of your report?
+(18:14) +19179631281: John
+(18:14) MyEJConcernBot: Hi John! Can I get your email address so we can keep track of your report?
+(18:15) +19179631281: No
+(18:15) MyEJConcernBot: No problem, John! You can choose to remain anonymous if you like. Can you tell me the location of the problem you'd like to report?
+(18:15) +19179631281: Texas
+(18:15) MyEJConcernBot: Great! Can you tell me the exact city, county, or street address of the problem?
+(18:15) +19179631281: Bryan
+(18:15) MyEJConcernBot: Got it, John. Can you tell me the date and time when you noticed the problem? Has it been recurring?
+(19:06) User: RESET

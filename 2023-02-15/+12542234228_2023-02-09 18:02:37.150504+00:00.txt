@@ -1,0 +1,14 @@
+(18:02) +12542234228: I am in a disaster 
+(18:02) MyEJConcernBot: Hi there! I'm MyEJConcern, and I'm here to help you report any environmental problems you may have noticed. Can you tell me a bit more about the problem? What location is the disaster in? When did you first notice it? Are there any smells or visible pollution that you can identify?
+(18:04) +12542234228: A fire hydrant busted and started flooding my house
+(18:04) MyEJConcernBot: Thanks for the information. Can you tell me the exact location of the problem? Also, when did you first notice it?
+(18:04) +12542234228: It's in bryan Texas. I just noticed it 
+(18:04) MyEJConcernBot: Thanks for the information. Can you provide me with the exact address of the problem? Also, what time did you first notice it?
+(18:06) +12542234228: 101 Anderson st, I'm swimming in water now
+(18:06) MyEJConcernBot: Okay, thanks for the information. I'll make sure to report the issue. Can you tell me what time you first noticed the problem?
+(18:06) +12542234228: Just now
+(18:06) MyEJConcernBot: Alright, thank you for the information. I'll make sure to report this issue to the relevant environmental quality agencies. Is there anything else you'd like to tell me about the problem?
+(18:07) +12542234228: What agency I need help now
+(18:07) MyEJConcernBot: I understand your urgency. I will report this issue to the relevant environmental quality agencies in your area. In the meantime, you can contact your local fire department for assistance.
+(18:07) +12542234228: What's their number 
+(18:08) MyEJConcernBot: Sure, the number for your local fire department is

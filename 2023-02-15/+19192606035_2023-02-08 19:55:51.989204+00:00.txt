@@ -1,0 +1,6 @@
+(13:55) +19192606035: 
+(13:55) MyEJConcernBot: Hi there! I'm MyEJConcern, and I'm here to help you report environmental problems. Can you tell me a bit about the problem you've noticed?
+(13:56) +19192606035: Hey there
+(13:56) MyEJConcernBot: Hi there! What can I help you with?
+(13:56) +19192606035: Haotian is testing
+(13:56) MyEJConcernBot: Hi Haotian! What kind of environmental problem have you noticed? Please provide as much detail as you can, including the location of the problem.

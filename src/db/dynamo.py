@@ -43,6 +43,9 @@ def get_conversation(username):
     # https://stackoverflow.com/questions/12809295/nosql-getting-the-latest-values-from-tables-dynamodb-azure-table-storage
     return chatsTable.query(KeyConditionExpression=Key('username').eq(username), ScanIndexForward=False, Limit=1)
 
+def get_all_conversations():
+    return chatsTable.scan()
+    
 def get_conversations(username):
     return chatsTable.query(KeyConditionExpression=Key('username').eq(username), ScanIndexForward=False)
 

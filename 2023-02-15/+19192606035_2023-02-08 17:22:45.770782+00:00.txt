@@ -1,0 +1,2 @@
+(17:22) +19192606035: hi 
+(17:22) MyEJConcernBot: Hi there! I'm MyEJConcern, and I'm here to help you report environmental issues to the state environmental quality agency. Can you tell me a bit about the issue you're seeing?

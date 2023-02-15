@@ -1,0 +1,29 @@
+(22:00) +19179631281: Hi there, I see there are construction projects that are causing damage to nearby wildlife habitats, do you think I should report this to the North Carolina Department of Environmental Quality? 
+(22:00) MyEcoReporter: Hi there! Yes, you should definitely report this to the North Carolina Department of Environmental Quality. We can help you do that. Could you please tell me your name, email address, and the location of the problem
+(22:02) +19179631281: Johnny, xtesting@tamu.edu, the location is mineral springs charlotte nc 
+(22:02) MyEcoReporter: Thanks, Johnny. Could you also tell me the date and time of when you noticed the problem? Has it been recurring? And is there any discrimination involved in the incident?
+(22:02) +19179631281: No, and no, and no
+(22:02) MyEcoReporter: Alright, thanks for your answers. Could you please provide some more details about the problem? That will help us investigate the situation more effectively.
+(22:02) +19179631281: The date was yesterday 
+(22:02) MyEcoReporter: Thanks for the additional information. Can you tell me what you observed that caused you to report this problem?
+(22:04) +19179631281: Wildlife habitats got damaged 
+(22:04) MyEcoReporter: Could you please give me a more detailed description of the damage you observed?
+(22:04) +19179631281: The tree was chock down
+(22:04) MyEcoReporter: Thanks for the additional information. Can you tell me any other details about the damage you observed?
+(22:05) +19179631281: The tree was chock down
+(22:05) MyEcoReporter: Thanks for the additional information. Can you tell me what type of tree it was and any other details about the damage you observed?
+(22:05) +19179631281: Is was a big tree and the damage was huge
+(22:05) MyEcoReporter: Thanks for the additional information. Can you tell me what type of tree it was and any other details about the damage you observed, such as what caused the tree to be chopped down?
+(22:05) +19179631281: *It
+(22:05) MyEcoReporter: Thanks for the additional information. Can you tell me what type of tree it was and any other details about the damage you observed, such as what caused the tree to be chopped down?
+(22:06) +19179631281: What do you mean 
+(22:06) MyEcoReporter: I'm sorry, I didn't mean to confuse you. What I'm asking is what type of tree was it that was chopped down, and what do you think caused it to be chopped down?
+(22:06) +19179631281: I have no idea
+(22:06) MyEcoReporter: That's okay. Do you know if the tree was located near any construction sites or other areas of activity?
+(22:07) +19179631281: Yes. But I can't give you anymore information 
+(22:07) MyEcoReporter: That's okay. Is there anything else you can tell me about the situation that might help us investigate it more effectively?
+(22:07) +19179631281: That's all I have to go
+(22:07) MyEcoReporter: Alright, thanks for your answers. We'll make sure to investigate the situation and take the necessary steps to protect the wildlife habitats.
+(22:07) +19179631281: I have to go
+(22:07) MyEcoReporter: Alright, thanks for your help. Have a great day!
+(16:36) User: RESET

@@ -1,0 +1,12 @@
+(14:57) +19192606035: hey I want to report some tires 
+(14:57) MyEJConcernBot: Hi there! I'm EcoReporter, here to help you report environmental issues to the North Carolina Department of Environmental Quality. Can you tell me your name
+(14:57) +19192606035: I'd rather not
+(14:57) MyEJConcernBot: No problem, you can remain anonymous. Can you tell me the location of the problem you'd like to report?
+(14:57) +19192606035: yeah it's down the street from my apartment
+(14:57) MyEJConcernBot: Thanks for the information. Can you tell me the exact address of the location, or the county and city it's in?
+(14:57) +19192606035: it's the address, county, and city of my apartment!
+(14:57) MyEJConcernBot: Great, thank you for the information. Can you tell me when you first noticed the problem? Has it been recurring?
+(14:58) +19192606035: it started yesterday
+(14:58) MyEJConcernBot: Got it. Do you think there was any discrimination involved in the incident?
+(14:58) +19192606035: no
+(14:58) MyEJConcernBot: Great, thank you. Can you tell me more details about the problem? Are there any smells? Visible pollution? Do you think you know what's causing it?

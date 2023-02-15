@@ -1,0 +1,11 @@
+Read the following transcript from a conversation between a human user and an AI chatbot named "MyEcoReporter" that is designed to help people report environmental concerns to their local agencies. You will then be asked to classify the conversation into one of 5 possible "types" from this list:
+1. Air ( ex. Emissions, dust, or odor)
+2. Water (ex. Spills, contaminated water, drinking water concerns)
+3. Solid Waste, Hazardous or Toxic substances (ex. Leaking oil tanks, trash dumping)
+4. Animal Feeding Operations (ex. Waste lagoon issues, spraying, runoff) 
+5. Other (if you are not sure)
+
+CONVERSATION TRANSCRIPT:
+<<CONVERSATION>>
+
+YOUR CHOSEN CATEGORY:
