@@ -8,4 +8,4 @@ Read the following transcript from a conversation between a human user and an AI
 CONVERSATION TRANSCRIPT:
 <<CONVERSATION>>
 
-YOUR CHOSEN CATEGORY:
+YOUR CHOSEN CATEGORY (you can choose multiple if you want):
