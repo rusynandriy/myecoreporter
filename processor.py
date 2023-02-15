@@ -21,6 +21,9 @@ if __name__ == "__main__":
         chat_log = conversation.get("conversation_text")
         username = conversation.get("username")
         started_at = conversation.get("started_at")
-        with open(f"{today}/{username}_{started_at}.txt", "w") as f:
-            for line in chat_log:
-                f.write(line + "\n")
+        try:
+            with open(f"{today}/{username}_{started_at}.txt", "w") as f:
+                for line in chat_log:
+                    f.write(line + "\n")
+        except:
+            print(("error writing file for ", username, "started at ", started_at))
