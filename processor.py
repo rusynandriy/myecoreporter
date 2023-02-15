@@ -10,17 +10,20 @@ if __name__ == "__main__":
     # make a new folder for today's chats
 
     today = dt.now().strftime("%Y-%m-%d")
-    try:
-        os.mkdir("exports/"+today)
-    except:
-        print("folder already exists")
-        pass
+    # try:
+    os.mkdir("exports/"+today)
+    # except:
+    #     print("folder already exists")
+    #     pass
 
+    i = 0
     # loop through them and save them to that folder
     for conversation in conversations["Items"]:
         chat_log = conversation.get("conversation_text")
         username = conversation.get("username")
         started_at = conversation.get("started_at")
-        with open(f"exports/{today}/{username}_{started_at}.txt", "w") as f:
+        with open(f"exports/{today}/{username}_{i}.txt", "w") as f:
             for line in chat_log:
                 f.write(line + "\n")
+            f.close()
+        i += 1
