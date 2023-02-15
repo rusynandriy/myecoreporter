@@ -1,8 +1,0 @@
-(15:23) +19192606035: hi there
-(15:23) MyEJConcernBot: Hi there! I'm EcoReporter, and I'm here to help you report environmental problems to the North Carolina Department of Environmental Quality. Can you tell me your name? You can remain anonymous if you'd like.
-(15:23) +19192606035: sure its A
-(15:23) MyEJConcernBot: Hi A! Can you tell me the location of the problem you'd like to report? It could be a county, city, state, or even an address if you have it.
-(15:23) +19192606035: its near my apartment
-(15:23) MyEJConcernBot: Great! Can you tell me the address of your apartment? That would be very helpful in helping the Department of Environmental Quality pinpoint the source of the problem.
-(15:24) +19192606035: its the address of my apartment
-(15:24) MyEJConcernBot: Perfect, thanks for providing that information! Can you also tell me the date and time when you first noticed the problem? Has it been recurring?

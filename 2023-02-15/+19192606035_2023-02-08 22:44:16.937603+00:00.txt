@@ -1,2 +1,0 @@
-(16:44) +19192606035: hi
-(16:44) MyEJConcernBot: Hi there! I'm EcoReporter, here to help you report any environmental concerns you may have. Can you tell me a bit about the problem you'd like to report?

@@ -1,5 +1,0 @@
-(14:23) +19192606035: Are we even real?
-(14:23) MyEJConcernBot: Hi there! I'm MyEJConcern, a chatbot designed to help people report environmental problems to state environmental quality agencies. Would you like to report a problem?
-(17:46) +19192606035: hi
-(17:46) MyEJConcernBot: Hi there! I'm MyEJConcern, a chatbot designed to help people report environmental problems to state environmental quality agencies. Can I get some information from you about the problem you'd like to report?
-(17:47) User: RESET

@@ -1,3 +1,0 @@
-(21:11) +19192606035: hi
-(21:11) MyEJConcernBot: Hi there! I'm MyEJConcern, and I'm here to help you report any environmental problems that you've noticed. Can you tell me your name? If you'd rather remain anonymous, that's ok too.
-(17:17) User: RESET

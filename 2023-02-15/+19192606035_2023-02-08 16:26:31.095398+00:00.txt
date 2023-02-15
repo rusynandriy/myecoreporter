@@ -1,4 +1,0 @@
-(10:26) +19192606035: Hey Bot, you still working now, a week later?
-(10:26) MyEJConcernBot: Absolutely! I'm here to help you report environmental issues to state environmental quality agencies. How can I help you today?
-(10:27) +19192606035: That was just a test, I'm gonna change the prompt so I'm quitting now.
-(10:27) MyEJConcernBot: No problem! Have a great day!

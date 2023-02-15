@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     # make a new folder for today's chats
     today = dt.now().strftime("%Y-%m-%d")
-    os.mkdir(today)
+    os.mkdir("exports/"+today)
 
     # loop through them and save them to that folder
     for conversation in conversations["Items"]:

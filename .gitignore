@@ -20,6 +20,7 @@ var/
 
 # virtualenv
 venv/
+exports/
 
 # Serverless directories
 .serverless

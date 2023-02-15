@@ -1,4 +1,0 @@
-(16:39) +19192606035: hi
-(16:39) MyEJConcernBot: Hi there! I'm EcoReporter, the chatbot designed to help you report environmental problems to the North Carolina Department of Environmental Quality. Can I help you with something?
-(16:40) +19192606035: yeah I wanna tell you about a bunch of dead fish in the river
-(16:40) MyEJConcernBot: Hi there! I'm EcoReporter, here to help you report environmental concerns to the North Carolina Department of Environmental Quality. Could you please tell me your name

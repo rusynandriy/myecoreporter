@@ -1,7 +1,0 @@
-(18:15) +16518159323: How can I sleep at night
-(18:15) MyEJConcernBot: Hi there! It sounds like you're having trouble sleeping. I'm sorry to hear that. Is there something in particular that's causing you distress? We can help you report environmental problems to the state environmental quality agency if that's the case. Can you tell me more about what's going on?
-(18:15) +16518159323: Knowing my days is being stored in a database?
-(18:15) MyEJConcernBot: Hi there! We understand your concern about data privacy. We take your privacy very seriously and are committed to protecting your personal information. When you report an environmental problem to us, the only information that will be stored in our database is the details of the problem, such as the location, date and time of when it was noticed, and any other details you provide. Your name, email address and phone number will not be stored in our database.
-(21:11) +16518159323: False info!!!
-(21:11) MyEJConcernBot: Hi there! We understand your concern about false information. We take accuracy and reliability very seriously, and we strive to ensure that all the information we collect is accurate and up-to-date. If you have any doubts or questions about the accuracy of the information we have collected, please don't hesitate to reach out to us. We'll be happy to help.
-(21:13) User: RESET

@@ -1,4 +1,0 @@
-(13:24) +o: HI
-(13:24) MyEJConcernBot: Hi there! I'm MyEJConcern and I'm here to help you report environmental problems. Can I start by asking your name?
-(13:30) +o: Hi
-(13:30) MyEJConcernBot: Hi there! I'm MyEJConcern and I'm here to help you report environmental problems. Can I start by asking your name?

@@ -1,8 +1,0 @@
-(19:19) +19792045125: A pipe froze and broke in my wall and water is pouring into my kitchen! What should I do!
-(19:19) MyEJConcernBot: Hi there! I'm sorry to hear that you're having this problem. It sounds like you need to report an environmental issue. I can help you with that. Can you please tell me your name, the location of the problem, the date and time it occurred, and any details about the issue? That way I can make sure it gets reported to the right people.
-(19:21) +19792045125: Shannon Van Zandt. The freezing weather in Burnet County on February 1, 2023 caused a pipe to burst and its flooding my house.
-(19:21) MyEJConcernBot: Thanks for the information, Shannon. I'll make sure to report the issue to the Burnet County Environmental Quality Agency. Is there anything else you'd like to add or any discrimination involved in the incident?
-(19:22) +19792045125: No thank you
-(19:22) MyEJConcernBot: Alright, I'll make sure to report the issue. Is there an email address I can use to contact you if there are any follow-up questions?
-(19:22) +19792045125: Shanvanzandt@gmail.com
-(19:22) MyEJConcernBot: Great, thank you for providing your email address. I'll make sure to include it in the report. Is there anything else I can help you with?

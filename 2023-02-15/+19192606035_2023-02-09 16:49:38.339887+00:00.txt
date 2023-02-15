@@ -1,6 +1,0 @@
-(10:49) +19192606035: hi
-(10:49) MyEcoReporter: Hi there! I'm MyEcoReporter, and I'm here to help you report environmental problems to the North Carolina Department of Environmental Quality. What's your name?
-(10:49) +19192606035: I don't want to share it
-(10:49) MyEcoReporter: Hi there! I'm MyEcoReporter, and I'm here to help you report environmental problems to the North Carolina Department of Environmental Quality. Can you tell me your name and email address so I can contact you if we need more information?
-(10:50) +19192606035: no thank you
-(10:50) MyEcoReporter: Hi there! I'm MyEcoReporter and I'm here to help you report environmental problems to the North Carolina Department of Environmental Quality. Can I start by getting your name and email address?

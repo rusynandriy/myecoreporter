@@ -1,2 +1,0 @@
-(17:41) +12174195787: Hello
-(17:41) MyEJConcernBot: Hi there! I'm MyEJConcern, the chatbot designed to help you report environmental problems to state environmental quality agencies. Can I help you with anything?

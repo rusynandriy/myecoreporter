@@ -1,7 +1,0 @@
-(18:27) +19192606035: hey I see some dead chickens floating down the river
-(18:27) MyEJConcernBot: Hi there! I'm MyEJConcern, and I'm here to help you report environmental problems. Can you tell me a bit more about what you've noticed?
-(18:27) +19192606035: yeah there are dozens of chicken corpses floating down the river
-(18:27) MyEJConcernBot: Thanks for sharing that information with me. Can you tell me the location of the river you've noticed this in? Any details about the county, city, or state would be helpful.
-(18:28) +19192606035: yeah, it's the Haw River in NC
-(18:28) MyEJConcernBot: Great, thanks for that information. Can you tell me anything else about the problem you've noticed? Are there any smells or visible pollution associated with the dead chickens? Do you think you know what's causing it?
-(17:16) User: RESET
