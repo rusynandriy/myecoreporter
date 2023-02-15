@@ -42,8 +42,10 @@ def process_incoming_message(username, message, testing):
         convo.add_message("RESET", user.first_name)
         convo.reset()
         dynamo.put_conversation_object(convo)
-        twilio.send_sms("Reset completed, message me again to start from scratch", user)
-        return None
+            # send the response to the user
+        if not testing:
+            twilio.send_sms("Reset completed, message me again to start from scratch", user)
+            return None
         
     # add the latest message to the convo
     convo.add_message(message, username)
