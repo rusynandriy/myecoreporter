@@ -11,6 +11,7 @@ if __name__ == "__main__":
 
     today = dt.now().strftime("%Y-%m-%d")
     # try:
+    os.mkdir("exports")
     os.mkdir("exports/"+today)
     # except:
     #     print("folder already exists")
@@ -22,7 +23,12 @@ if __name__ == "__main__":
         chat_log = conversation.get("conversation_text")
         username = conversation.get("username")
         started_at = conversation.get("started_at")
-        with open(f"exports/{today}/{username}_{i}.txt", "w") as f:
+        # the started at will come back like this: 
+        # 2023-02-09 16:37:02.512564+00:00
+        # we want to make it like this:
+        # 2023-02-09_16-37-02
+        started_at = started_at.replace(" ", "_").replace(":", "-").split(".")[0]
+        with open(f"exports/{today}/{username}_{started_at}.txt", "w") as f:
             for line in chat_log:
                 f.write(line + "\n")
             f.close()
