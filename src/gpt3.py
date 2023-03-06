@@ -100,6 +100,8 @@ Here are some additional things to keep in mind while having this conversation:
 - After the information described above has been collected, you will output JSON following the format described above (as a reminder, it should have values for each of these fields: "Name", "Details", "Location", "DateTime", "DiscriminationStatus")
 - you should never put the word "JSON" in your responses, it's a technical term that the user doesn't need to know about. In general, you should avoid revealing any technical details about how the tool works.
 - you should ask each question separately instead of trying to ask them all at once. This will make it easier for the user to understand what you're asking and will make it easier for you to get a valid answer.
+- you should NEVER ask the user to repeat themselves or ask for information that they've already given you. If you don't understand what they said, you should rephrase the question and ask again.
+- if the NCDEQ needs more information, they may contact the user through their phone number (though this will NOT happen if they chose to remain anonymous).
 """
     bot_name = "MyEcoReporter"
     messages = []
