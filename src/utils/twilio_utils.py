@@ -1,3 +1,4 @@
+import base64
 from twilio.rest import Client
 import src.utils.utils as utils
 import urllib.parse
@@ -15,11 +16,16 @@ def send_sms(response, user):
             to=user.username)
 
 def parse_response(event, target):
+        # assume the data is base64 encoded
         body = event['body']
+        # convert body to a string from base64
+        try:
+                body = base64.b64decode(body).decode('utf-8')
+        except:
+                body = body
         if target == "message":
                 sms = urllib.parse.unquote_plus(body[body.find('Bo')+5:body.find('&FromCo')]) # 'hi'
                 return sms
         elif target == "number":
                 number = "+" + body[body.find('From=')+8:body.find('&Api')] # "+15551236789"
                 return number
-    

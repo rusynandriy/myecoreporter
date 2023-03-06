@@ -10,7 +10,7 @@ provider:
     twilio_number: ${param:twilio_number}
     twilio_auth_token: ${param:twilio_auth_token}
     openaiapikey: ${param:openaiapikey}
-  timeout: 30
+  timeout: 240
   iam:
       role:
           statements:
@@ -29,6 +29,7 @@ provider:
 functions:
   hello:
     handler: handler.hello
+    url: true
     events:
       - http:
           path: chat
