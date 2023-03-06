@@ -49,14 +49,8 @@ class Conversation:
 
     def add_message(self, message, sender_name, with_timestamp=True, gmt_offset=""):
         if with_timestamp:
-            hours_mins_now = dt.now().strftime("%H:%M")
-            # if gmt_offset is not blank, use the value to calculate the time
-            if gmt_offset != "":
-                hours_mins_now = str((int(hours_mins_now.split(":")[0]) + int(gmt_offset.split(":")[0])) % 24) + ":" + hours_mins_now.split(":")[1]
-                # pad with a 0 if it's a single digit
-                if len(hours_mins_now.split(":")[0]) == 1:
-                    hours_mins_now = "0" + hours_mins_now
-            message = f'({hours_mins_now}) {sender_name}: {message}'
+            timestamp_now = dt.now().strftime("%Y-%m-%d %H:%M:%S")      
+            message = f'{sender_name}: ({timestamp_now}) {message}'
         else:
             message = f'{sender_name}: {message}'
         self.chat.append(message)

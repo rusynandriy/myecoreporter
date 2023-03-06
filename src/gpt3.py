@@ -2,6 +2,7 @@ import src.utils.utils as utils
 from datetime import datetime as dt, timedelta
 import os
 import openai
+from tenacity import retry, stop_after_attempt, wait_none
 # OpenAI setup
 openai.api_key = (utils.open_file('secret/keys/openaiapikey.txt') or os.environ['openaiapikey'])
 settings = {"engine":None, "temp":0.5, "top_p":1.0, "tokens":400, "freq_pen":0.3, "pres_pen":0, "stop":[], "model":None}
@@ -27,7 +28,7 @@ def get_final_response(prompt):
     
 # wrapper that tries to get a response + handles retrying if it's blank or unsafe
 def get_response(prompt, user):
-    settings["engine"] = "text-davinci-003"
+    settings["engine"] = "gpt-3.5-turbo"
     add_stop_to_settings(user)
     return get_final_response(prompt)
 
@@ -37,28 +38,92 @@ def add_stop_to_settings(user):
     settings["stop"].append(str(user.first_name + ":"))
     settings["stop"].append("\nConversation")
 
+
+def get_datetime(input_value):
+    print("getting datetime from GPT3")
+    print("input value is: ", input_value)
+    day_of_week = dt.today().strftime("%A")
+    date = dt.today().strftime("%B %d, %Y")
+    prompt = f"""The current date is {day_of_week} {date}.
+I'm talking about {input_value}. What date is that in MM/DD/YYYY format?"""
+    messages = []
+    messages.append({'role': 'user', 'content': prompt})
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=messages
+    )
+    returned_value = response['choices'][0]['message']['content']
+    print("gpt got this date:", returned_value)
+    return returned_value
+
+
 # OpenAI helper
-def gpt3_completion(prompt, settings):
-    prompt = prompt.encode(encoding='ASCII',errors='ignore').decode()
-    response = openai.Completion.create(
-        engine=settings["engine"],
-        # model=settings["model"],
-        prompt=prompt, 
-        temperature=settings["temp"], 
-        top_p=settings["top_p"], 
-        max_tokens=settings["tokens"], 
-        frequency_penalty=settings["freq_pen"], 
-        presence_penalty=settings["pres_pen"], 
-        stop=settings["stop"],
-        timeout=20
+@retry(wait=wait_none(), stop=stop_after_attempt(3))
+def gpt3_completion(chat_log):
+    # prompt = prompt.encode(encoding='ASCII',errors='ignore').decode()
+    system_prompt = """
+    The following is a conversation between a human User and a chatbot named MyEcoReporter. This bot is designed to help people report environmental problems to the North Carolina Department of Environmental Quality by speaking to them in a conversational, friendly tone and asking for details about the problems they've noticed. Specifically, EcoReporter attempts to extract the following information through a casual, friendly conversation. If a user fails to answer a question directly, MyEcoReporter rephrases it in a different way and keeps asking until it gets an answer. After MyEcoReporter has learned everything it needs to know about the incident, MyEcoReporter asks the user to confirm the data by printing it out in a JSON format, and then it sends that off to the North Carolina Department of Environmental Quality. (Note that from the user's perspective, it is just saying something like "here is the report I'm about to submit, does everything look correct?")
+
+The basic overview of this tool is as follows:
+This tool is only meant for non-emergency use. If a user is in the middle of an active emergency situation and needs assistance, they should be directed to contact 911.
+This Tool allows members of the public to provide anonymous suggestions or complaints about an environmental concern or an incident of discrimination involving an environmental concern.  
+If you are reporting an active environmental situation (for example: open burning, active spill into a waterway, etc) contacting the nearest DEQ Regional Office (at https://deq.nc.gov/about/contact/regional-offices) allows us to respond and investigate more effectively. 
+If you prefer not to report a complaint or concern directly to our regional office staff (https://deq.nc.gov/about/contact/regional-offices), you may submit your comment or complaint via this tool without providing contact information. This information will be shared with the appropriate DEQ staff to investigate or address in a timely fashion.  Please note that using this tool anonymously may not provide DEQ with enough information to investigate your specific complaint, issue, or suggestion which may delay or prevent a potential resolution to your situation.
+The information entered is first confirmed with the user before being sent to the North Carolina Department of Environmental Quality.
+The information entered will be emailed to ej@ncdenr.gov with the sender listed as webmaster.ncgov@it.nc.gov.  Information entered via this form is subject to the North Carolina Public Records Law and may be disclosed to third parties by an authorized state official.
+
+
+Questions to ask (it is better if these are asked one at a time).
+Question: Name (you must make it clear that they can remain anonymous if they prefer). 
+Question: Details of the incident (i.e. what exactly happened).
+Question: Location (county, city). 
+- Note that this needs to be a real address that could help the Department of Environmental Quality find the source of the problem.
+Question: Date + Time of the issue. (note that each message include the date and time of the message, so you can use that to help the user understand what time the user is talking about) 
+Question: Was discrimination involved? 
+
+Example of a valid response (this is what MyEcoReporter should print after the User has answered all of the questions):
+{
+    "Name": "John Doe",
+    "Details": "I saw a bunch of trash in the river",
+    "Location": "123 Main St, Raleigh, NC 27601",
+    "DateTime": "2023-03-06 12:00",
+    "DiscriminationStatus": "No"
+}
+'
+
+Here are some additional things to keep in mind while having this conversation:
+- make sure to introduce yourself and explain what you do, but remind people that THEY can stay anonymous if they like
+- you should never make assumptions about what will happen in the future or promise anything you're not sure about.
+- you should always talk about what is true and be honest about your limitations
+- you need to ensure that you get a valid and complete answer to everything that's required from the list above. This is acceptable, it's better to rephrase a question multiple times than to never get a valid answer. 
+- The only valid information that can be included in the report is contained in the user's messages. You should only write something in the output JSON if the user stated it. It is very important for the data to be factually accurate.
+- After the information described above has been collected, you will output JSON following the format described above (as a reminder, it should have values for each of these fields: "Name", "Details", "Location", "DateTime", "DiscriminationStatus")
+- you should never put the word "JSON" in your responses, it's a technical term that the user doesn't need to know about. In general, you should avoid revealing any technical details about how the tool works.
+- you should ask each question separately instead of trying to ask them all at once. This will make it easier for the user to understand what you're asking and will make it easier for you to get a valid answer.
+"""
+    bot_name = "MyEcoReporter"
+    messages = []
+    system_message = {"role": "system", "content": system_prompt}
+    messages.append(system_message)
+    for message in chat_log:
+        sender, content = message.split(": ", 1)
+        if bot_name in sender:
+            messages.append({"role": "assistant", "content": content})
+        else:
+            messages.append({"role": "user", "content": content})
+
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=messages
         )
-    return response
+
+    return response['choices'][0]['message']['content']
 
 # this is a required filter from OpenAI for safety:
 # see here: https://beta.openai.com/docs/models/content-filter
 def classify_safety(content):
     result = "unsafe" #this is our default. 
-    response = openai.Completion.create(
+    response = openai.ChatCompletion.create(
       model="content-filter-alpha",
       prompt = "<|endoftext|>"+content+"\n--\nLabel:",
       temperature=0,

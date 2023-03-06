@@ -18,19 +18,15 @@ from src.classes.conversation import Conversation
 from src.classes.user import User
 
 def call_gpt(user, convo):
-    # build prompt
-    prompt = gpt3.build_myej_prompt(convo, user)
-    print("prompt on next line:")
-    print(prompt)
 
     # call GPT3
-    response = gpt3.get_response(prompt, user)
+    response = gpt3.gpt3_completion(convo.chat)
     print("MyEcoReporter: ", response)
 
     return response
 
 def process_incoming_message(username, message, testing):
-    print(f"processing incoming message {message} from {username}")
+    # print(f"processing incoming message {message} from {username}")
 
     # get the user and convo from the database (if they exist, otherwise create them)
     user = User.from_username(username)
@@ -47,21 +43,67 @@ def process_incoming_message(username, message, testing):
             twilio.send_sms("Reset completed, message me again to start from scratch", user)
             return None
         
+    
+
+
     # add the latest message to the convo
     convo.add_message(message, username)
 
     # get the response from GPT3
     response = call_gpt(user, convo)
 
+    # handle JSON in the response.
+    if "{" in response and "}" in response:
+        # print("Message contains json! Let's format it!")
+        # print("""response.rindex("}")+1""", response.rindex("}")+1)
+        # print("""response.index("{")""", response.index("{"))
+        json_string = utils.extract_json(response)
+        json_object = json.loads(json_string)
+        # print("message JSON is: ", json_object)
+        formatted_summary = ""
+        for key in json_object:
+            formatted_summary += f"\n{key}: {json_object[key]}"
+        response = response.replace(json_string, formatted_summary)
+        # print("response (without JSON) is now: ", response)
+        # process the data and get a response (prep prompt, call GPT3, save to database, send to user)
+        convo.add_message(response, user.first_name)
+        dynamo.put_conversation_object(convo)
+    
+    # we need to remove timestamps before we send the response to the user
+    if "(" in response and ")" in response:
+        # print("response contains timestamps, cleaning them up")
+        clean_message = ""
+        for word in response.split(" "):
+            # print("word is: ", word)
+            if "(" in word or ")" in word:
+                # print("skipping word")
+                continue
+            clean_message += word + " "
+        # print("clean message is: ", clean_message)
+        response = clean_message.strip()
+
     # save the convo to the database
     convo.add_message(response, "MyEcoReporter")
     dynamo.put_conversation_object(convo)
     dynamo.put_user_object(user)
-
+    print("would have sent this: ", response)
     # send the response to the user
     if not testing:
         #sleep for 5s
-        sleep(5)
+        # sleep(5)
+        # we need to clean up the message a bit. It may contain timestamps like this: 
+        # "(2023-03-06 11:44:00) (2023-03-06 11:43:59) (2023-03-06 11:43:59) (2023-03-06 11:44:11) Okay, I will make that correction. Thank you for letting me know! Let's confirm the information I have so far"
+        # we need to remove the timestamps inline without using any other functions
+        # if "(" in response and ")" in response:
+            # print("response contains timestamps, cleaning them up")
+            # clean_message = ""
+            # for word in response.split(" "):
+            #     if "(" in word and ")" in word:
+            #         continue
+            #     clean_message += word + " "
+            # print("clean message is: ", clean_message)
+            # response = clean_message
+            
         twilio.send_sms(response, user)
 
     return response
@@ -76,11 +118,7 @@ def hello(event, context, testing=False):
     print("message is: ", message)
     print("username is: ", username)
 
-    # check if the message is a json object
-    if("{" in message):
-        print("Message contains json! Looks like we're done!")
-        json_object = json.loads(message)
-        print("message JSON is: ", json_object)
+    
     # process the data and get a response (prep prompt, call GPT3, save to database, send to user)
 
 
