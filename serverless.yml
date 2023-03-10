@@ -34,6 +34,7 @@ functions:
       - http:
           path: chat
           method: post
+    provisionedConcurrency: 1
 resources:
   Resources:
     users:

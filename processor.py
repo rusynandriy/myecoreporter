@@ -97,7 +97,7 @@ if __name__ == "__main__":
         if choice == "2":
             since_date = input("What date do you want to start at? (YYYY-MM-DD)")
             since_date_dt = dt.strptime(since_date, "%Y-%m-%d")
-        print("got this many conversations: ", len(conversations["Items"]))
+        print("got this many conversations in total: ", len(conversations["Items"]))
         for conversation in conversations["Items"]:
             chat_log = conversation.get("conversation_text")
             username = conversation.get("username")
@@ -110,12 +110,16 @@ if __name__ == "__main__":
             if choice == "2":
                 started_at_dt = dt.strptime(started_at.split(" ")[0], "%Y-%m-%d")
                 if started_at_dt < since_date_dt:
+                    print("skipping this one")
                     continue
             started_at = started_at.replace(" ", "_").replace(":", "-").split(".")[0]
-            with open(f"exports/{today}/{username}_{started_at}.txt", "w") as f:
-                for line in chat_log:
-                    f.write(line + "\n")
-                f.close()
+            try:
+                with open(f"exports/{today}/{username}_{started_at}.txt", "w") as f:
+                    for line in chat_log:
+                        f.write(line + "\n")
+                    f.close()
+            except:
+                print("error writing file")
             i += 1
     elif choice == "2":
         print("Supposed to push chats to Airtable")
