@@ -31,7 +31,7 @@ class Conversation:
                     convo.completed_at = dynamo_db_item["Items"][0]["completed_at"]
                     convo.chat = list()
                     convo.chat_status = "NEWFORUSER"
-                    convo.started_at = str(dt.now(pytz.timezone("UTC")))
+                    convo.started_at = str(dt.now(pytz.timezone("CST6CDT")))
                 except:
                     # if there's no completed_at key, it's an ongoing convo and we need the started_at time for later since it's our Sort Key
                     try:
@@ -43,13 +43,13 @@ class Conversation:
         except:
             # first time user's first ever convo
             convo.conversation = list()
-            convo.started_at = str(dt.now(pytz.timezone("UTC")))
+            convo.started_at = str(dt.now(pytz.timezone("CST6CDT")))
             convo.chat_status = "BRANDNEW"
         return convo
 
     def add_message(self, message, sender_name, with_timestamp=True, gmt_offset=""):
         if with_timestamp:
-            timestamp_now = dt.now().strftime("%Y-%m-%d %H:%M:%S")      
+            timestamp_now = dt.now(pytz.timezone("CST6CDT")).strftime("%Y-%m-%d %H:%M:%S")      
             message = f'{sender_name}: ({timestamp_now}) {message}'
         else:
             message = f'{sender_name}: {message}'

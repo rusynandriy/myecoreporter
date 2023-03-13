@@ -35,7 +35,7 @@ def process_incoming_message(username, message, testing):
     # dev thing to help with testing. Can also be used by users if they get stuck.
     if("RESET" == message.strip().upper()): 
         print("ending convo, they just hit the reset button!")
-        convo.add_message("RESET", user.first_name)
+        convo.add_message("RESET", username)
         convo.reset()
         dynamo.put_conversation_object(convo)
         # send the response to the user
@@ -66,21 +66,12 @@ def process_incoming_message(username, message, testing):
         response = response.replace(json_string, formatted_summary)
         # print("response (without JSON) is now: ", response)
         # process the data and get a response (prep prompt, call GPT3, save to database, send to user)
-        convo.add_message(response, user.first_name)
+        convo.add_message(response, username)
         dynamo.put_conversation_object(convo)
     
     # we need to remove timestamps before we send the response to the user
     if "(" in response and ")" in response:
-        # print("response contains timestamps, cleaning them up")
-        clean_message = ""
-        for word in response.split(" "):
-            # print("word is: ", word)
-            if "(" in word or ")" in word:
-                # print("skipping word")
-                continue
-            clean_message += word + " "
-        # print("clean message is: ", clean_message)
-        response = clean_message.strip()
+        response = response[22:]
 
     # save the convo to the database
     convo.add_message(response, "MyEcoReporter")

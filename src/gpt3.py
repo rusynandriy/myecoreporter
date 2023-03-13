@@ -35,7 +35,7 @@ def get_response(prompt, user):
 def add_stop_to_settings(user):
     bot_name = "MyEcoReporter"
     settings["stop"] = [f'{bot_name}:', "("]
-    settings["stop"].append(str(user.first_name + ":"))
+    settings["stop"].append(f"{user.username}:")
     settings["stop"].append("\nConversation")
 
 

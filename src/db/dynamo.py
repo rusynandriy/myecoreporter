@@ -3,6 +3,8 @@ import os
 from boto3.dynamodb.conditions import Key
 from datetime import datetime as dt
 
+import pytz
+
 # DynamoDB setup
 os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'
 client = boto3.resource('dynamodb')
@@ -11,7 +13,7 @@ usersTable = client.Table("ejusers")
 
 # DynamoDB helpers
 def put_user_object(user):
-    usersTable.put_item(Item= {'username': user.username, 'first_name': user.first_name, 'location':user.location, 'created_at':user.created_at, 'last_updated_at':dt.now().strftime("%Y-%m-%d %H:%M:%S")}) 
+    usersTable.put_item(Item= {'username': user.username, 'first_name': user.first_name, 'location':user.location, 'created_at':user.created_at, 'last_updated_at':dt.now(pytz.timezone('CST6CDT')).strftime("%Y-%m-%d %H:%M:%S")}) 
 
 def put_conversation_object(conversation):
     if(conversation.chat_status == "BRANDNEW"):
