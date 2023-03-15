@@ -109,6 +109,8 @@ if __name__ == "__main__":
             # if we have a since_date, we only want to save the chats that are after that date
             if choice == "2":
                 started_at_dt = dt.strptime(started_at.split(" ")[0], "%Y-%m-%d")
+                print("started at is ", started_at)
+                print("since date is ", since_date)
                 if started_at_dt < since_date_dt:
                     print("skipping this one")
                     continue
@@ -118,8 +120,9 @@ if __name__ == "__main__":
                     for line in chat_log:
                         f.write(line + "\n")
                     f.close()
-            except:
-                print("error writing file")
+            except Exception as e:
+                print("error writing file:")
+                print(e)
             i += 1
     elif choice == "2":
         print("Supposed to push chats to Airtable")
