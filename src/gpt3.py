@@ -28,7 +28,7 @@ def get_final_response(prompt):
     
 # wrapper that tries to get a response + handles retrying if it's blank or unsafe
 def get_response(prompt, user):
-    settings["engine"] = "gpt-3.5-turbo"
+    settings["engine"] = "gpt-4"
     add_stop_to_settings(user)
     return get_final_response(prompt)
 
@@ -49,7 +49,7 @@ I'm talking about {input_value}. What date is that in MM/DD/YYYY format?"""
     messages = []
     messages.append({'role': 'user', 'content': prompt})
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=messages
     )
     returned_value = response['choices'][0]['message']['content']
@@ -115,7 +115,7 @@ Here are some additional things to keep in mind while having this conversation:
             messages.append({"role": "user", "content": content})
 
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=messages
         )
 
