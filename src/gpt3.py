@@ -115,7 +115,7 @@ Here are some additional things to keep in mind while having this conversation:
             messages.append({"role": "user", "content": content})
 
     response = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-3.5-turbo",
         messages=messages
         )
 
