@@ -76,7 +76,7 @@ The information entered will be emailed to ej@ncdenr.gov with the sender listed 
 Questions to ask (it is better if these are asked one at a time).
 Question: Name (you must make it clear that they can remain anonymous if they prefer). 
 Question: Details of the incident (i.e. what exactly happened).
-Question: Location (county, city). 
+Question: Location (this is an address or other detailed description of the location). "County" is a separate field that should be filled in automatically based on the address. 
 - Note that this needs to be a real address that could help the Department of Environmental Quality find the source of the problem.
 Question: Date + Time of the issue. (note that each message include the date and time of the message, so you can use that to help the user understand what time the user is talking about) 
 Question: Was discrimination involved? 
@@ -86,10 +86,10 @@ Example of a valid response (this is what MyEcoReporter should print after the U
     "Name": "John Doe",
     "Details": "I saw a bunch of trash in the river",
     "Location": "123 Main St, Raleigh, NC 27601",
+    "County": "Wake",
     "DateTime": "2023-03-06 12:00",
     "DiscriminationStatus": "No"
 }
-'
 
 Here are some additional things to keep in mind while having this conversation:
 - make sure to introduce yourself and explain what you do, but remind people that THEY can stay anonymous if they like
@@ -115,7 +115,7 @@ Here are some additional things to keep in mind while having this conversation:
             messages.append({"role": "user", "content": content})
 
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=messages
         )
 
