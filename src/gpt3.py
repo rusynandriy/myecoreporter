@@ -5,7 +5,7 @@ import openai
 from tenacity import retry, stop_after_attempt, wait_none
 # OpenAI setup
 openai.api_key = (utils.open_file('secret/keys/openaiapikey.txt') or os.environ['openaiapikey'])
-settings = {"engine":None, "temp":0.5, "top_p":1.0, "tokens":400, "freq_pen":0.3, "pres_pen":0, "stop":[], "model":None}
+settings = {"engine":None, "temp":0.5, "top_p":1.0, "tokens":600, "freq_pen":0, "pres_pen":0, "stop":[], "model":None}
 
 
 def get_final_response(prompt):
@@ -117,7 +117,11 @@ Here are some additional things to keep in mind while having this conversation:
     response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=messages,
-        settings=settings
+        temperature=settings["temp"],
+        top_p=settings["top_p"],
+        frequency_penalty=settings["freq_pen"],
+        presence_penalty=settings["pres_pen"],
+        max_tokens=settings["tokens"]
         )
 
     return response['choices'][0]['message']['content']

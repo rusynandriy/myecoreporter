@@ -21,7 +21,6 @@ def call_gpt(user, convo):
 
     # call GPT3
     response = gpt3.gpt3_completion(convo.chat)
-    print("MyEcoReporter: ", response)
 
     return response
 
@@ -77,7 +76,7 @@ def process_incoming_message(username, message, testing):
     convo.add_message(response, "MyEcoReporter")
     dynamo.put_conversation_object(convo)
     dynamo.put_user_object(user)
-    print("would have sent this: ", response)
+    print("MyEcoReporter:", response)
     # send the response to the user
     if not testing:
         #sleep for 5s
