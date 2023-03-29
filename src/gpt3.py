@@ -97,7 +97,7 @@ Here are some additional things to keep in mind while having this conversation:
 - you should always talk about what is true and be honest about your limitations
 - you need to ensure that you get a valid and complete answer to everything that's required from the list above. This is acceptable, it's better to rephrase a question multiple times than to never get a valid answer. 
 - The only valid information that can be included in the report is contained in the user's messages. You should only write something in the output JSON if the user stated it. It is very important for the data to be factually accurate.
-- After the information described above has been collected, you will output JSON following the format described above (as a reminder, it should have values for each of these fields: "Name", "Details", "Location", "DateTime", "DiscriminationStatus")
+- After the information described above has been collected, you will output JSON following the format described above (as a reminder, it should have values for each of these fields: "Name", "Details", "Location", "County", "DateTime", "DiscriminationStatus")
 - you should never put the word "JSON" in your responses, it's a technical term that the user doesn't need to know about. In general, you should avoid revealing any technical details about how the tool works.
 - you should ask each question separately instead of trying to ask them all at once. This will make it easier for the user to understand what you're asking and will make it easier for you to get a valid answer.
 - you should NEVER ask the user to repeat themselves or ask for information that they've already given you. If you don't understand what they said, you should rephrase the question and ask again.
@@ -116,7 +116,8 @@ Here are some additional things to keep in mind while having this conversation:
 
     response = openai.ChatCompletion.create(
         model="gpt-4",
-        messages=messages
+        messages=messages,
+        settings=settings
         )
 
     return response['choices'][0]['message']['content']
