@@ -63,10 +63,6 @@ def process_incoming_message(username, message, testing):
         for key in json_object:
             formatted_summary += f"\n{key}: {json_object[key]}"
         response = response.replace(json_string, formatted_summary)
-        # print("response (without JSON) is now: ", response)
-        # process the data and get a response (prep prompt, call GPT3, save to database, send to user)
-        convo.add_message(response, username)
-        dynamo.put_conversation_object(convo)
     
     # we need to remove timestamps before we send the response to the user
     if "(" in response and ")" in response:

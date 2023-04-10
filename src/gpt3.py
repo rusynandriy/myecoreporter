@@ -78,7 +78,7 @@ Question: Name (you must make it clear that they can remain anonymous if they pr
 Question: Details of the incident (i.e. what exactly happened).
 Question: Location (this is an address or other detailed description of the location). "County" is a separate field that should be filled in automatically based on the address. 
 - Note that this needs to be a real address that could help the Department of Environmental Quality find the source of the problem.
-Question: Date + Time of the issue. (note that each message include the date and time of the message, so you can use that to help the user understand what time the user is talking about) 
+Question: Date + Time of the issue. (note that each message includes the date and time of the message, so you can use that to help the user understand what time the user is talking about) 
 Question: Was discrimination involved? 
 
 Example of a valid response (this is what MyEcoReporter should print after the User has answered all of the questions):
