@@ -65,8 +65,9 @@ def process_incoming_message(username, message, testing):
         response = response.replace(json_string, formatted_summary)
     
     # we need to remove timestamps before we send the response to the user
-    if "(" in response and ")" in response:
-        response = response[22:]
+    # look for the first ")" and remove everything before it
+    if ")" in response[:30]:
+        response = response[response.find(")")+1:]
 
     # save the convo to the database
     convo.add_message(response, "MyEcoReporter")
