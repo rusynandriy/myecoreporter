@@ -6,13 +6,12 @@ import os
 
 twilio_account_sid = (utils.open_file('secret/keys/twilio_account_sid.txt') or os.environ['twilio_account_sid'] )
 twilio_auth_token = (utils.open_file('secret/keys/twilio_auth_token.txt') or os.environ['twilio_auth_token'])
-twilio_number = (utils.open_file('secret/keys/twilio_number.txt') or os.environ['twilio_number'])
 twilio_client = Client(twilio_account_sid, twilio_auth_token)
 
-def send_sms(response, user):
+def send_sms(response, user, phone_number):
      twilio_client.messages.create(
             body=response,
-            from_=twilio_number, 
+            from_=phone_number, 
             to=user.username)
 
 def parse_response(event, target):

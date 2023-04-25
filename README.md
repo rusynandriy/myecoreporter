@@ -1,5 +1,5 @@
 <!--
-title: 'MyEJConcern Bot'
+title: 'MyEcoReporter'
 description: 'A simpler way to collect data about environmental issues.'
 layout: Doc
 framework: v3
@@ -9,9 +9,8 @@ authorLink: 'https://github.com/andriyrusyn'
 authorName: 'Andriy Rusyn'
 -->
 
-# MYEJConcern
-
-This is a simple chat application that give people an easier way to report environmental quality concerns to their local government. You just text the bot over SMS and talk to it instead of filling out a form.
+# MyEcoReporter
+This is a simple chat bot that gives people an easier way to report environmental quality concerns to their local government. You just text the bot over SMS and talk to it instead of filling out a form.
 
 ## Setup (see windows notes below)
 1. Clone repo to your machine: `git clone origin https://github.com/andriyrusyn/myejbot`

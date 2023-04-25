@@ -27,13 +27,21 @@ provider:
                 - "arn:aws:dynamodb:*:*:table/ejchats"  
                 - "arn:aws:dynamodb:*:*:table/ejusers"  
 functions:
-  hello:
-    handler: handler.hello
+  hello_nc:
+    handler: handler.hello_nc
     url: true
-    events:
-      - http:
-          path: chat
-          method: post
+    provisionedConcurrency: 1
+  hello_tcdeq:
+    handler: handler.hello_tcdeq
+    url: true
+    provisionedConcurrency: 1
+  hello_harris:
+    handler: handler.hello_harris
+    url: true
+    provisionedConcurrency: 1
+  hello_ca:
+    handler: handler.hello_ca
+    url: true
     provisionedConcurrency: 1
 resources:
   Resources:
