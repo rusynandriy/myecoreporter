@@ -40,7 +40,7 @@ state_settings = {
         "phone_number": "+16507191736",
         "bot_name": "Prop 65 Bot",
         "prompt_filename": "assets/prompts/ca_prompt.txt"
-    },
+    }
 }
 
 def call_gpt(user, convo, prompt_filename, bot_name):
@@ -52,6 +52,22 @@ def process_incoming_message(username, message, testing, state):
     # get the user and convo from the database (if they exist, otherwise create them)
     user = User.from_username(username)
     convo = Conversation.from_username(username)
+    # check the started_at time to see if it's been more than 24 hours since the last message
+    if convo.started_at:
+        # this is the format: 2023-02-08 18:12:44.567191+00:00
+        convo_started_at_dt = dt.strptime(convo.started_at, "%Y-%m-%d %H:%M:%S.%f%z")
+        # get rid of the timezone info
+        convo_started_at_dt = convo_started_at_dt.replace(tzinfo=None)
+        time_since_convo_started = dt.now() - convo_started_at_dt
+        if time_since_convo_started.days > 4:
+            response = "It looks like our last chat was more than 4 days ago. If you want to restart and have a new conversation, please text 'RESET'."
+            convo.add_message(response, username)
+            dynamo.put_conversation_object(convo)
+            print(bot_name+": "+response)
+            # send the response to the user
+            if not testing:
+                twilio.send_sms(response, user, phone_number)
+        
     phone_number = state_settings[state]["phone_number"]
     bot_name = state_settings[state]["bot_name"]
     prompt_filename = state_settings[state]["prompt_filename"]

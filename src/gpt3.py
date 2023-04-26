@@ -55,7 +55,6 @@ I'm talking about {input_value}. What date is that in MM/DD/YYYY format?"""
     print("gpt got this date:", returned_value)
     return returned_value
 
-
 # OpenAI helper
 # @retry(wait=wait_none(), stop=stop_after_attempt(3))
 def gpt3_completion(chat_log, prompt_filename, bot_name):
@@ -72,7 +71,8 @@ def gpt3_completion(chat_log, prompt_filename, bot_name):
         else:
             messages.append({"role": "user", "content": content})
 
-    response = openai.ChatCompletion.create(
+    try:
+        response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=messages,
         temperature=settings["temp"],
@@ -81,6 +81,17 @@ def gpt3_completion(chat_log, prompt_filename, bot_name):
         presence_penalty=settings["pres_pen"],
         max_tokens=settings["tokens"]
         )
+    except openai.error.InvalidRequestError as e:
+        print("ERROR: " + str(e))
+        return {"choices": [{"text": "Sorry, looks like our ongoing conversation got too long. Try sending 'reset' to restart the conversation."}]}
+    
+    # cases
+    # 1. I am having a long conversation within a single day
+    #       what would happen: you would be mid convo and would get "Sorry, looks like our ongoing conversation got too long. Try sending 'reset' to restart the conversation."
+    #        
+    # 2. I am having a second conversation a week later
+    #       what would happen: you would be having another convo next week, would have part of that, and would get "Sorry, looks like our ongoing conversation got too long. Try sending 'reset' to restart the conversation."
+    # 3. Something broke THAT IS NOT RELATED TO CONVO LENGTH
 
     return response['choices'][0]['message']['content']
 
