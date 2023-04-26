@@ -31,8 +31,8 @@ functions:
     handler: handler.hello_nc
     url: true
     provisionedConcurrency: 1
-  hello_tcdeq:
-    handler: handler.hello_tcdeq
+  hello_tceq:
+    handler: handler.hello_tceq
     url: true
     provisionedConcurrency: 1
   hello_harris:
