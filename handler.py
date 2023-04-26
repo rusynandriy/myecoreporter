@@ -26,13 +26,13 @@ state_settings = {
         "bot_name": "MyEcoReporterNC",
         "prompt_filename": "assets/prompts/nc_prompt.txt"
     },
-    "tcdeq": {
+    "tceq": {
         "phone_number": "+18453353583",
-        "bot_name": "MyEcoReporterTCDEQ",
-        "prompt_filename": "assets/prompts/tcdeq_prompt.txt"
+        "bot_name": "MyEcoReporterTCEQ",
+        "prompt_filename": "assets/prompts/tceq_prompt.txt"
     },
     "harris": {
-        "phone_number": "+18453353583",
+        "phone_number": "+13462143548",
         "bot_name": "MyEcoReporterHarris",
         "prompt_filename": "assets/prompts/harris_prompt.txt"
     },
@@ -125,7 +125,7 @@ def hello_nc(event, context, testing=False):
     # return a success object
     return utils.get_success_object(event)
 
-def hello_tcdeq(event, context, testing=False):
+def hello_tceq(event, context, testing=False):
     # get the data we need from the event
     message = twilio.parse_response(event, "message")
     username = twilio.parse_response(event, "number")
@@ -133,7 +133,7 @@ def hello_tcdeq(event, context, testing=False):
     print("username is: ", username)
 
     # process the data and get a response (prep prompt, call GPT3, save to database, send to user)
-    process_incoming_message(username, message, testing, "tcdeq")
+    process_incoming_message(username, message, testing, "tceq")
 
     # return a success object
     return utils.get_success_object(event)
@@ -167,7 +167,7 @@ def hello_ca(event, context, testing=False):
 if __name__ == "__main__":
     username = (input("What is your username? ") or "+19192606035")
     new_convo = (input("Do you want to start a new conversation? (y/n) ") or "n")
-    state = (input("What state are you in? (nc, tcdeq, harris, ca) ") or "nc")
+    state = (input("What state are you in? (nc, tceq, harris, ca) ") or "nc")
     if new_convo == "y":
         convo = Conversation.from_username(username)
         convo.reset()
@@ -181,8 +181,8 @@ if __name__ == "__main__":
         fake_event = {"body":"Body:"+encoded_input_message+"&FromCo"+"From=aaa"+cleaned_number+"&Api"}
         if state == "nc":
             hello_nc(fake_event, None, True)
-        elif state == "tcdeq":
-            hello_tcdeq(fake_event, None, True)
+        elif state == "tceq":
+            hello_tceq(fake_event, None, True)
         elif state == "harris":
             hello_harris(fake_event, None, True)
         elif state == "ca":
