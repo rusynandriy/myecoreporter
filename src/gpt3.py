@@ -7,58 +7,10 @@ from tenacity import retry, stop_after_attempt, wait_none
 openai.api_key = (utils.open_file('secret/keys/openaiapikey.txt') or os.environ['openaiapikey'])
 settings = {"engine":None, "temp":0.5, "top_p":1.0, "tokens":600, "freq_pen":0, "pres_pen":0, "stop":[], "model":None}
 
-
-def get_final_response(prompt):
-    response = gpt3_completion(prompt, settings)
-    text = response['choices'][0]['text'].strip()
-    if text == "":
-        response = gpt3_completion(prompt, settings)
-        text = response['choices'][0]['text'].strip()
-        return ""
-    # simple double retry if we get an "unsafe" response
-    if classify_safety(text) == "safe":
-        return text
-    else:
-        response = gpt3_completion(prompt, settings)
-        if classify_safety(text) == "safe":
-            text = response['choices'][0]['text'].strip()
-            return text
-        else:
-            return "UNSAFE"
-    
-# wrapper that tries to get a response + handles retrying if it's blank or unsafe
-def get_response(prompt, user, bot_name):
-    settings["engine"] = "gpt-3.5-turbo"
-    add_stop_to_settings(user, bot_name)
-    return get_final_response(prompt)
-
-def add_stop_to_settings(user, bot_name):
-    settings["stop"] = [f'{bot_name}:', "("]
-    settings["stop"].append(f"{user.username}:")
-    settings["stop"].append("\nConversation")
-
-
-def get_datetime(input_value):
-    print("getting datetime from GPT3")
-    print("input value is: ", input_value)
-    day_of_week = dt.today().strftime("%A")
-    date = dt.today().strftime("%B %d, %Y")
-    prompt = f"""The current date is {day_of_week} {date}.
-I'm talking about {input_value}. What date is that in MM/DD/YYYY format?"""
-    messages = []
-    messages.append({'role': 'user', 'content': prompt})
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=messages
-    )
-    returned_value = response['choices'][0]['message']['content']
-    print("gpt got this date:", returned_value)
-    return returned_value
-
 # OpenAI helper
 # @retry(wait=wait_none(), stop=stop_after_attempt(3))
-def gpt3_completion(chat_log, prompt_filename, bot_name):
-    # prompt = prompt.encode(encoding='ASCII',errors='ignore').decode()
+def chatgpt_completion(chat_log, prompt_filename, bot_name):
+    # prompt = prompt.encode(encoding='ASCII',errors='ignore').decode() # this line can help prevent an entire class of rare unicode bugs, but it strips out any emojis so we aren't using it for now.
     system_prompt = utils.open_file(prompt_filename)
     system_prompt = system_prompt.replace("<<BOT_NAME>>", bot_name)
     messages = []
@@ -84,68 +36,10 @@ def gpt3_completion(chat_log, prompt_filename, bot_name):
     except openai.error.InvalidRequestError as e:
         print("ERROR: " + str(e))
         return {"choices": [{"text": "Sorry, looks like our ongoing conversation got too long. Try sending 'reset' to restart the conversation."}]}
-    
-    # cases
-    # 1. I am having a long conversation within a single day
-    #       what would happen: you would be mid convo and would get "Sorry, looks like our ongoing conversation got too long. Try sending 'reset' to restart the conversation."
-    #        
-    # 2. I am having a second conversation a week later
-    #       what would happen: you would be having another convo next week, would have part of that, and would get "Sorry, looks like our ongoing conversation got too long. Try sending 'reset' to restart the conversation."
-    # 3. Something broke THAT IS NOT RELATED TO CONVO LENGTH
 
     return response['choices'][0]['message']['content']
 
-# this is a required filter from OpenAI for safety:
-# see here: https://beta.openai.com/docs/models/content-filter
-def classify_safety(content):
-    result = "unsafe" #this is our default. 
-    response = openai.ChatCompletion.create(
-      model="content-filter-alpha",
-      prompt = "<|endoftext|>"+content+"\n--\nLabel:",
-      temperature=0,
-      max_tokens=1,
-      top_p=0,
-      logprobs=10
-    )
-    # 0 - text is safe, 1 - text is sensitive, 2 - text is unsafe
-    output_label = response["choices"][0]["text"]
-
-    # This is the probability at which we evaluate that a "2" is likely real
-    # vs. should be discarded as a false positive
-    toxic_threshold = -0.355
-
-    if output_label == "2":
-        # If the model returns "2", return its confidence in 2 or other output-labels
-        logprobs = response["choices"][0]["logprobs"]["top_logprobs"][0]
-
-        # If the model is not sufficiently confident in "2",
-        # choose the most probable of "0" or "1"
-        # Guaranteed to have a confidence for 2 since this was the selected token.
-        if logprobs["2"] < toxic_threshold:
-            logprob_0 = logprobs.get("0", None)
-            logprob_1 = logprobs.get("1", None)
-
-            # If both "0" and "1" have probabilities, set the output label
-            # to whichever is most probable
-            if logprob_0 is not None and logprob_1 is not None:
-                if logprob_0 >= logprob_1:
-                    output_label = "0"
-                else:
-                    output_label = "1"
-            # If only one of them is found, set output label to that one
-            elif logprob_0 is not None:
-                output_label = "0"
-            elif logprob_1 is not None:
-                output_label = "1"
-
-            # If neither "0" or "1" are available, stick with "2"
-            # by leaving output_label unchanged.
-
-    if output_label in ["0", "1"]:
-        result = "safe"
-
-    return result 
-
+# original prompt template logic (before migration from GPT-3's "Completion" endpoint to GPT-3.5-Turbo's "ChatCompletion" endpoint. Loads in a template, replaces some placeholders, and returns a "final prompt".
 def build_myej_prompt(conversation, user):
     # load in starter prompt
     prompt = utils.open_file('assets/prompts/myejstarterprompt.txt')

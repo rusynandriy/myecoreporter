@@ -3,13 +3,7 @@ from datetime import datetime as dt, timedelta
 import pytz
 
 class Conversation:
-    def __init__(self, username, chat, chat_status, started_at, completed_at):
-        self.username = username
-        self.chat = chat
-        self.chat_status = chat_status # BRANDNEW/NEWFORUSER/ONGOING/COMPLETED
-        self.started_at = started_at
-        self.completed_at = completed_at
-
+    # creates a new Conversation object with a list for storing chat messages
     def __init__(self):
         self.username = ""
         self.chat = list()
@@ -17,6 +11,7 @@ class Conversation:
         self.started_at = ""
         self.completed_at = ""
 
+    # creates OR retrieves a conversation for a given user.
     @classmethod
     def from_username(cls, username):
         dynamo_db_item = dynamo.get_conversation(str(username))
@@ -47,6 +42,7 @@ class Conversation:
             convo.chat_status = "BRANDNEW"
         return convo
 
+    # adds a timestamped message to the chat list in the Conversation object
     def add_message(self, message, sender_name, with_timestamp=True, gmt_offset=""):
         if with_timestamp:
             timestamp_now = dt.now(pytz.timezone("CST6CDT")).strftime("%Y-%m-%d %H:%M:%S")      
@@ -54,14 +50,8 @@ class Conversation:
         else:
             message = f'{sender_name}: {message}'
         self.chat.append(message)
-
-    def complete(self, rating=""):
-        completed_at = str(dt.now())
-        if rating != "":
-            self.rating = rating
-        self.chat_status = "COMPLETED"
-        self.completed_at = completed_at
-        
+    
+    # resets the conversation. Primarily used in testing.
     def reset(self):
         completed_at = str(dt.now())
         self.rating = "RESET"

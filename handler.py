@@ -19,7 +19,7 @@ from src.classes.conversation import Conversation
 from src.classes.user import User
 
 
-# make a data structure that maps state names like "nc" to a phone number and a bot name
+# make a data structure that maps state names like "nc" to a phone number, a prompt file, and a bot name
 state_settings = {
     "nc": {
         "phone_number": "+19799852909",
@@ -43,16 +43,19 @@ state_settings = {
     }
 }
 
-def call_gpt(user, convo, prompt_filename, bot_name):
-    # call GPT3
-    response = gpt3.gpt3_completion(convo.chat, prompt_filename, bot_name)
-    return response
-
 def process_incoming_message(username, message, testing, state):
     # get the user and convo from the database (if they exist, otherwise create them)
     user = User.from_username(username)
     convo = Conversation.from_username(username)
-    # check the started_at time to see if it's been more than 24 hours since the last message
+    
+        
+    # pull the relevant state settings from the dictionary
+    phone_number = state_settings[state]["phone_number"]
+    bot_name = state_settings[state]["bot_name"]
+    prompt_filename = state_settings[state]["prompt_filename"]
+    
+    # check the started_at time to see if it's been more than 4 days since the last message
+    # if it's been that long, send the user a suggestion to RESET.
     if convo.started_at:
         # this is the format: 2023-02-08 18:12:44.567191+00:00
         convo_started_at_dt = dt.strptime(convo.started_at, "%Y-%m-%d %H:%M:%S.%f%z")
@@ -67,10 +70,6 @@ def process_incoming_message(username, message, testing, state):
             # send the response to the user
             if not testing:
                 twilio.send_sms(response, user, phone_number)
-        
-    phone_number = state_settings[state]["phone_number"]
-    bot_name = state_settings[state]["bot_name"]
-    prompt_filename = state_settings[state]["prompt_filename"]
     
     # dev thing to help with testing. Can also be used by users if they get stuck.
     if("RESET" == message.strip().upper()): 
@@ -83,14 +82,14 @@ def process_incoming_message(username, message, testing, state):
             twilio.send_sms("Reset completed, message me again to start from scratch", user, phone_number)
         return None
         
-        
     # add the latest message to the convo
     convo.add_message(message, username)
     
     # get the response from GPT3
-    response = call_gpt(user, convo, prompt_filename, bot_name)
+    response = gpt3.chatgpt_completion(convo.chat, prompt_filename, bot_name)
 
-    # handle JSON in the response.
+    # handle JSON in the response if it is present.
+    # "handle" here just means to clean it up a bit for presentation to the User
     if "{" in response and "}" in response:
         json_string = utils.extract_json(response)
         json_object = json.loads(json_string)
@@ -99,32 +98,23 @@ def process_incoming_message(username, message, testing, state):
             formatted_summary += f"\n{key}: {json_object[key]}"
         response = response.replace(json_string, formatted_summary)
     
-    # we need to remove timestamps before we send the response to the user
+    # we need to remove timestamps before we send the response to the user if GPT accidentally added some as part of the response
     if ")" in response[:30]:
         response = response[response.find(")")+1:]
 
-    # save the convo to the database
+    # save the Conversation and User objects to the database
     convo.add_message(response, bot_name)
     dynamo.put_conversation_object(convo)
     dynamo.put_user_object(user)
-    print(bot_name+": "+response)
-    # send the response to the user
-    if not testing:
-        # sleep for 5s
-        # sleep(5)
-        # we need to clean up the message a bit. It may contain timestamps like this: 
-        # "(2023-03-06 11:44:00) (2023-03-06 11:43:59) (2023-03-06 11:43:59) (2023-03-06 11:44:11) Okay, I will make that correction. Thank you for letting me know! Let's confirm the information I have so far"
-        # we need to remove the timestamps inline without using any other functions
-        # if "(" in response and ")" in response:
-            # print("response contains timestamps, cleaning them up")
-            # clean_message = ""
-            # for word in response.split(" "):
-            #     if "(" in word and ")" in word:
-            #         continue
-            #     clean_message += word + " "
-            # print("clean message is: ", clean_message)
-            # response = clean_message  
+    
+    # send the response to the user (but only if we're not Smoke Testing locally)
+    if testing:
+        # print the response to the console if we're testing
+        print(bot_name+": "+response)
+    else:    
+        # send an SMS if we're NOT testing
         twilio.send_sms(response, user, phone_number)
+    
     return response
 
 
@@ -181,28 +171,38 @@ def hello_ca(event, context, testing=False):
     return utils.get_success_object(event)
 
 if __name__ == "__main__":
+    # setup for local smoke testing: ask for Username, Convo Reset, + State to use
     username = (input("What is your username? ") or "+19192606035")
     new_convo = (input("Do you want to start a new conversation? (y/n) ") or "n")
     state = (input("What state are you in? (nc, tceq, harris, ca) ") or "nc")
+    
+    # if we want to test a new convo, reset it and load a fresh one
     if new_convo == "y":
         convo = Conversation.from_username(username)
         convo.reset()
         dynamo.put_conversation_object(convo)
+        
+    # get the correct name to use (User in all cases for now)
     user = User.from_username(username)
     name_to_use = user.first_name or "User"
+    
+    # keep sending messages back and forth until the user sends "quit" (you can also use the CTRL+C shortcut to kill the running terminal process)
     while True:
         input_message = input(name_to_use + ": ")
+        # take the user's message + URL encode it to match what Twilio does
         encoded_input_message = urllib.parse.quote(input_message)
-        cleaned_number = user.username[1:]
+        cleaned_number = user.username[1:] # remove the leading '+' on the phone number
         fake_event = {"body":"Body:"+encoded_input_message+"&FromCo"+"From=aaa"+cleaned_number+"&Api"}
+        # call the correct method based on which state the user wants to test. 
+        # NOTE that we pass in a testing=True parameter to avoid sending texts while testing locally.
         if state == "nc":
-            hello_nc(fake_event, None, True)
+            hello_nc(fake_event, None, testing=True)
         elif state == "tceq":
-            hello_tceq(fake_event, None, True)
+            hello_tceq(fake_event, None, testing=True)
         elif state == "harris":
-            hello_harris(fake_event, None, True)
+            hello_harris(fake_event, None, testing=True)
         elif state == "ca":
-            hello_ca(fake_event, None, True)
+            hello_ca(fake_event, None, testing=True)
         if input_message == "quit":
             break 
             
