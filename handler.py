@@ -32,7 +32,7 @@ state_settings = {
         "prompt_filename": "assets/prompts/tceq_prompt.txt"
     },
     "harris": {
-        "phone_number": "+13462143548",
+        "phone_number": "+18332729100",
         "bot_name": "MyEcoReporterHarris",
         "prompt_filename": "assets/prompts/harris_prompt.txt"
     },
