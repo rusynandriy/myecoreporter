@@ -4,8 +4,6 @@ from datetime import datetime as dt
 import pdb
 from time import sleep
 import urllib.parse
-import boto3
-import os
 
 
 # import our custom utilities + helper classes
@@ -53,7 +51,13 @@ def process_incoming_message(username, message, testing, state):
     phone_number = state_settings[state]["phone_number"]
     bot_name = state_settings[state]["bot_name"]
     prompt_filename = state_settings[state]["prompt_filename"]
-    
+
+    # if the chat is only 1 message long, send a custom additional warning message:
+    if len(convo.chat) == 0:
+        demo_warning_message = "Please note that this is a DEMO ONLY. Your reports will NOT actually be submitted! Text 'RESET' to start over at any time."
+        print(bot_name + ": "+ demo_warning_message)
+        twilio.send_sms(demo_warning_message, user, phone_number)
+
     # check the started_at time to see if it's been more than 4 days since the last message
     # if it's been that long, send the user a suggestion to RESET.
     if convo.started_at:
